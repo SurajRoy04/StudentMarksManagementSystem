@@ -1,0 +1,26 @@
+CREATE TABLE Subject (
+ SubjectCode INT PRIMARY KEY,
+ SubjectName VARCHAR(50) NOT NULL
+ );
+CREATE TABLE Teacher (
+ TeacherID INT PRIMARY KEY,
+ Name VARCHAR(50) NOT NULL,
+ SubjectCode INT,
+ FOREIGN KEY (SubjectCode) REFERENCES Subject(SubjectCode)
+ );
+CREATE TABLE Student (
+ StudentID INT PRIMARY KEY,
+ StudentName VARCHAR(50) NOT NULL,
+ SubjectCode INT,
+ TeacherID INT,
+ FOREIGN KEY (SubjectCode) REFERENCES Subject(SubjectCode),
+ FOREIGN KEY (TeacherID) REFERENCES Teacher(TeacherID)
+ );
+CREATE TABLE Marks (
+ MarkID INT PRIMARY KEY,
+ StudentID INT,
+ SubjectCode INT,
+ Mark INT,
+ FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
+ FOREIGN KEY (SubjectCode) REFERENCES Subject(SubjectCode)
+ );
